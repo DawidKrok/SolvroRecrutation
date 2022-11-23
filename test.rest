@@ -1,0 +1,74 @@
+@host = http://localhost:5000
+
+###
+#   =========================
+#   Products
+#   =========================
+###
+
+POST {{host}}/add_product
+Content-Type: application/json
+
+{
+    "name": "Milk",
+    "price": 30
+}
+
+###
+
+POST {{host}}/get_all_products
+
+###
+
+POST {{host}}/get_product
+Content-Type: application/json
+
+{
+    "id": "637e77508bdcc9fe2784df7f"
+}
+
+###
+
+POST {{host}}/delete_product
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkyMzQzMjYsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOltdfSwiaWF0IjoxNjY5MjMzNzI2fQ.zCLTIfcObcqK7ExyjYpbFstqg0Ig0DjryH0hmF5X8vQ
+Content-Type: application/json
+
+{
+    "id": "637e78348bdcc9fe2784df8a"
+}
+
+###
+
+POST {{host}}/login
+Content-Type: application/json
+
+{
+    "email": "dawid@gmail.com",
+    "password": "12345678"
+}
+
+###
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+    "email": "dawid@gmail.com",
+    "password": "12345678"
+}
+
+###
+
+POST {{host}}/logout
+
+###
+//==================| CART |=================//
+###
+
+POST {{host}}/addToCart
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkyMzQzMjYsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOltdfSwiaWF0IjoxNjY5MjMzNzI2fQ.zCLTIfcObcqK7ExyjYpbFstqg0Ig0DjryH0hmF5X8vQ
+Content-Type: application/json
+
+{
+    "id": "637e77508bdcc9fe2784df7f"
+}

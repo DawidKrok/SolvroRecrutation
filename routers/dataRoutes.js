@@ -29,10 +29,17 @@ router.post("/delete_product", tokenServices.authenticateToken, productServices.
 
 
 // =============| CART |============== //
- /** Adds Product with given id to logged user's cart 
-  * req.body:
-  * @id : id of Product to delete */
-  router.post("/addToCart", tokenServices.authenticateToken, productServices.addToCart)
+/** Returns logged User's cart */
+router.post("/getCart", tokenServices.authenticateToken, productServices.getCart)
 
+/** Adds Product with given id to logged user's cart 
+  * req.body:
+  * @id : id of Product to add*/
+router.post("/addToCart", tokenServices.authenticateToken, productServices.addToCart)
+
+/** Removes Product with given id from logged user's cart 
+  * req.body:
+  * @id : id of Product to remove */
+router.post("/removeFromCart", tokenServices.authenticateToken, productServices.removeFromCart)
 
 module.exports = router

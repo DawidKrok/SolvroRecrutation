@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
     },
     cart: [{
         productId: mongoose.ObjectId,
-        quantity: Number
+        quantity: Number,
+        _id: false
     }]
 }, {
     versionKey: false

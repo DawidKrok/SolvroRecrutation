@@ -1,3 +1,4 @@
+const User = require('../db/schemes').User
 const Product = require('../db/schemes').Product
 
 
@@ -70,15 +71,52 @@ deleteProduct = async (req, res) => {
 }
 
 // &&&&&&&&&&&&&&&& | CART | &&&&&&&&&&&&&&&
-/** @Adds : new Product to database */
+/** @Gets : User's cart array */
+getCart = async (req, res) => {
+    try {     
+        // req.user contains only user info encoded into token, so it's good only for retrieving credentials
+        const user = await User.findOne({ email: req.user.email })  
+        res.status(202).send(JSON.stringify(user.cart))
+
+    } catch(err) {
+        res.sendStatus(500)
+        console.log(err) 
+    }
+}
+
+/** @Adds : new Product to User's cart */
 addToCart = async (req, res) => {
     try {
         if(!req.body.id)  
             return res.sendStatus(400)
             
-        user = req.user
+        if(!await Product.findById(req.body.id))
+            return res.status(404)
+
+        const user = await User.findOne({ email: req.user.email })
+
+        user.cart.push({
+            productId: req.body.id,
+            quantity: 1,
+        })
+
+        await user.save()
 
         res.status(202).send(JSON.stringify(user.cart))
+
+    } catch(err) {
+        res.sendStatus(500)
+        console.log(err) 
+    }
+}
+
+/** @Deletes : Product from User's cart */
+removeFromCart = async (req, res) => {
+    try {
+        if(!req.body.id)  
+            return res.sendStatus(400)
+            
+        res.status(202).send(JSON.stringify(req.user.cart))
 
     } catch(err) {
         res.sendStatus(500)
@@ -91,5 +129,7 @@ module.exports = {
     getAllProducts,
     getProduct,
     deleteProduct,
-    addToCart
+    getCart,
+    addToCart,
+    removeFromCart,
 }

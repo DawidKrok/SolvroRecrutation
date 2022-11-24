@@ -75,7 +75,7 @@ deleteProduct = async (req, res) => {
 getCart = async (req, res) => {
     try {     
         // req.user contains only user info encoded into token, so it's good only for retrieving credentials
-        const user = await User.findOne({ email: req.user.email })  
+        const user = await User.findById(req.user._id)
         res.status(202).send(JSON.stringify(user.cart))
 
     } catch(err) {
@@ -93,12 +93,19 @@ addToCart = async (req, res) => {
         if(!await Product.findById(req.body.id))
             return res.status(404)
 
-        const user = await User.findOne({ email: req.user.email })
+        const user = await User.findById(req.user._id)
 
-        user.cart.push({
-            productId: req.body.id,
-            quantity: 1,
-        })
+        //=======| ADD OR INCREMENT |=======
+        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        
+        // if there's already a Product with given Id, increment its quantity
+        if(prodIndex >= 0)
+            user.cart[prodIndex].quantity++
+        else // else - add product to User's cart
+            user.cart.push({
+                productId: req.body.id,
+                quantity: 1,
+            })
 
         await user.save()
 
@@ -115,9 +122,13 @@ removeFromCart = async (req, res) => {
     try {
         if(!req.body.id)  
             return res.sendStatus(400)
-            
-        res.status(202).send(JSON.stringify(req.user.cart))
+        
+        // removes product with given id
+        await User.findByIdAndUpdate(req.user._id,
+            { $pull: { cart: { productId: req.body.id } }}
+        )
 
+        res.sendStatus(202)
     } catch(err) {
         res.sendStatus(500)
         console.log(err) 

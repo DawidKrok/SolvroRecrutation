@@ -123,12 +123,24 @@ removeFromCart = async (req, res) => {
         if(!req.body.id)  
             return res.sendStatus(400)
         
-        // removes product with given id
-        await User.findByIdAndUpdate(req.user._id,
-            { $pull: { cart: { productId: req.body.id } }}
-        )
+        const user = await User.findById(req.user._id)
+        //=======| REMOVE OR DECREMENT |=======
+        
+        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        
+        // if there's no Product with given Id, return 404
+        if(prodIndex == -1) return res.sendStatus(404)
+        
+        
+        user.cart[prodIndex].quantity--
+        
+        // if quantinty reached 0, remove Product from cart
+        if(user.cart[prodIndex].quantity <= 0) 
+            user.cart.splice(prodIndex, 1)
 
-        res.sendStatus(202)
+        await user.save()
+
+        res.status(202).send(JSON.stringify(user.cart))
     } catch(err) {
         res.sendStatus(500)
         console.log(err) 

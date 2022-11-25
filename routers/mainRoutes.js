@@ -14,8 +14,8 @@ router.get("/register", (req, res) => {
     res.render("register")
 })
 
-router.get("/admin", tokenServices.checkLogged, (req, res) => {
-    res.render("admin")
+router.get("/cart", tokenServices.checkLogged, (req, res) => {
+    res.render("cart")
 })
 
 

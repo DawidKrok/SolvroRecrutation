@@ -6,7 +6,7 @@
 #   =========================
 ###
 
-POST {{host}}/add_product
+POST {{host}}/addProduct
 Content-Type: application/json
 
 {
@@ -16,11 +16,11 @@ Content-Type: application/json
 
 ###
 
-POST {{host}}/get_all_products
+POST {{host}}/getAllProducts
 
 ###
 
-POST {{host}}/get_product
+POST {{host}}/getProduct
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 
-POST {{host}}/delete_product
+POST {{host}}/deleteProduct
 Authorization: {{auth_key}}
 Content-Type: application/json
 

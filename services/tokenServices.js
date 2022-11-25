@@ -77,9 +77,14 @@ checkLogged = async (req, res, next) => {
 /** @Deletes user's Refresh token from database and their cookies */
 deleteToken = async (req, res) => {
     try {
+        if(!req.cookies.refreshToken)   return res.sendStatus(401)
+
         // Delete Refresh Token from database
         RefreshToken.deleteOne({token: req.cookies.refreshToken}, err => {
-            if(err) return res.sendStatus(403)
+            if(err) {
+                console.log(`Error on logout: ${err}`)
+                return res.sendStatus(403)
+            }
         })
        
         // Deletes user's Refresh Token cookie

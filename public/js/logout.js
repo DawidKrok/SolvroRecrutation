@@ -1,4 +1,6 @@
 $("#logout").on("click", () => {
-    dataFetch("/logout")
+    s = dataFetch("/logout")
+    console.log(s)
+    console.log("l")
     location.reload()
 })

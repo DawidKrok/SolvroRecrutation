@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+* {
+    margin: 0;
+}
+
+body {
+    --clr-background: #fff;
+    --clr-primary: #2A9D8F;
+    --clr-primary-dark: #1A7D6F;
+    --clr-primary-darker: #13242A;
+    font-family: 'Roboto', sans-serif;
+    background: var(--clr-background);
+}
+
+h1 {
+    margin: .5vw 2vw;
+    font-size: 5vw;
+    color: var(--clr-primary-darker);
+}
+
+h2 {
+    font-size: 3vw;
+    color: var(--clr-primary-darker);
+}
+
+p {
+    font-size: 1.5vw;
+    color: var(--clr-background)
+}
+
+#products_container {
+    position: relative;
+    top: 12vh;
+    left: 10vw;
+    width: 85vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.product_card {
+    width: 14.5vw;
+    height: 7vw;
+    background-color: var(--clr-primary);
+    border: .4vw solid var(--clr-primary-darker);
+    border-radius: 2vw;
+
+    padding: .5vw;
+    margin: 1vh 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    cursor: pointer;
+}
+
+.product_card:hover {
+    background: var(--clr-primary-dark)
+}
+
+#cart {
+    position: fixed;
+    top: 2vw;
+    right: 2vw;
+    width: 5vw;
+    height: 5vw;
+
+    border: .2vw solid var(--clr-primary-darker);
+    border-radius: .5vw;
+
+    cursor: pointer;
+}
+
+#cart:hover {
+    background: lightgray;
+}
+
+#logout {
+    position: fixed;
+    top: 3.5vw;
+    right: 9vw;
+    width: 4vw;
+    height: 2vw;
+}

@@ -17,11 +17,4 @@ router.post("/register", services.register, services.login)
  * @Deletes Refresh Token from database and user's cookies */
 router.post("/logout", tokenServices.deleteToken)
 
-
-
- router.get("/test", (req, res) => {
-   console.log("k")
-   res.send(":oooooooo")
- })
-
 module.exports = router

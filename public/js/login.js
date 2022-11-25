@@ -27,7 +27,7 @@ $("form").on("submit", e => {
     /**  @data : object resolved from Promise above. Contains Access and Refresh Tokens */
     .then(data => {
         localStorage.setItem("accessToken", data)
-        window.location.replace("/index")
+        window.location.replace("/cart")
     })
     .catch(err => {
         console.log(err)
@@ -45,6 +45,10 @@ $("form").on("submit", e => {
             case 401:
                 $(".pass-err").css("visibility", "visible")
                 break 
+            // user already logged
+            case 406:
+                window.location.replace("/cart")
+                break;
         }
     })
 })

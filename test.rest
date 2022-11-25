@@ -10,8 +10,8 @@ POST {{host}}/addProduct
 Content-Type: application/json
 
 {
-    "name": "Milk",
-    "price": 30
+    "name": "Bread",
+    "price": 2.75
 }
 
 ###

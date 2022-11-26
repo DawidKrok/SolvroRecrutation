@@ -76,6 +76,20 @@ p {
     background: lightgray;
 }
 
+#curr_prod {
+    position: fixed;
+    font-size: 1vw;
+    width: 4vw;
+    height: 1.5vw;
+    top: 7.5vw;
+    right: 2.5vw;
+
+    background: red;
+    color: #fff;
+    border-radius: .5vw;
+    text-align: center;
+}
+
 #logout {
     position: fixed;
     top: 3.5vw;

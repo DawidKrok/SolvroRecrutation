@@ -5,6 +5,7 @@
 {{#if logged}}
 <button id="logout">LOGOUT</button>
 <img id="cart" src="img/shopping_cart.png" alt="shopping cart">
+<p id="curr_prod">0</p>
 {{else}}
 <button id="login">LOGIN</button>
 {{/if}}
@@ -14,5 +15,8 @@
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/utils.js"></script>
-<script src="js/index.js"></script>
+<script src="js/index/index.js"></script>
 <script src="js/logout.js"></script>
+{{#if logged}}
+<script src="js/index/index_logged.js"></script>
+{{/if}}

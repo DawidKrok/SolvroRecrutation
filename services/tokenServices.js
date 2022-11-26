@@ -69,9 +69,7 @@ checkRefreshToken = async refreshToken => {
 /** Handles checking if user is @logged and sets req.logged flag */
 checkLogged = async (req, res, next) => {
     req.logged = await checkRefreshToken(req.cookies.refreshToken)
-
-    console.log(req.logged)
-
+    
     next()
 }
 

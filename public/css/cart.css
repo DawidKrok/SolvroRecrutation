@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+* {
+    margin: 0;
+}
+
+body {
+    --clr-background: #fff;
+    --clr-primary: #2A9D8F;
+    --clr-primary-dark: #1A7D6F;
+    --clr-primary-darker: #13242A;
+    font-family: 'Roboto', sans-serif;
+    background: var(--clr-background);
+}
+
+#products_container {
+    position: relative;
+    margin: 4vw 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#products_container > div {
+    display: flex;    
+    border-bottom: 2px dashed gray;
+}
+
+#products_container > div > * {
+    width: 25%;
+    text-align: center;
+}
+
+
+#products_container > div:first-child {
+    background: var(--clr-primary-dark);
+    color: #fff;
+}
+
+
+#products_container > div:nth-child(even) {
+    background: lightgray;
+}
+
+#sum_display {
+    position: relative;
+    font-size: 3vw;
+
+    left: 5vw;
+}

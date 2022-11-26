@@ -2,9 +2,12 @@
 
 <h1>Available products:</h1>
 
+{{#if logged}}
 <button id="logout">LOGOUT</button>
 <img id="cart" src="img/shopping_cart.png" alt="shopping cart">
-
+{{else}}
+<button id="login">LOGIN</button>
+{{/if}}
 
 <div id="products_container"></div>
 

@@ -66,10 +66,11 @@ checkRefreshToken = async refreshToken => {
     }
 }
 
-/** Handles checking if user is @logged and redirects them if they're not (probably should change names of these functions)*/
+/** Handles checking if user is @logged and sets req.logged flag */
 checkLogged = async (req, res, next) => {
-    if(! await checkRefreshToken(req.cookies.refreshToken))
-        return res.redirect(307, "/login")
+    req.logged = await checkRefreshToken(req.cookies.refreshToken)
+
+    console.log(req.logged)
 
     next()
 }

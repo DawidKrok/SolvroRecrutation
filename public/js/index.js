@@ -11,6 +11,11 @@ populateProducts = products => {
 dataFetch("getAllProducts")
 .then(populateProducts)
 
-cart.onclick = () => {
+$("#cart").on("click",  () => {
     window.location.replace("/cart")
-}
+})
+
+$("#login").on("click", () => {
+    console.log("kkkkkk")
+    window.location.replace("/login")
+})

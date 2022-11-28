@@ -22,12 +22,17 @@ body {
 
 #products_container > div {
     display: flex;    
+    justify-content: space-between;
     border-bottom: 2px dashed gray;
 }
 
 #products_container > div > * {
-    width: 25%;
+    width: 33%;
     text-align: center;
+}
+
+#products_container input {
+    height: 10vh;
 }
 
 

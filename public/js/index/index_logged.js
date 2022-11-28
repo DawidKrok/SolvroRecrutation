@@ -1,4 +1,4 @@
-var c_p = 0
+var c_p = 0  // to determine amount of products in the user's cart and display it 
 
 authorizedFetch("getCart")
 .then(cart => {

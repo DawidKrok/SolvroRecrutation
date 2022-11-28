@@ -37,6 +37,11 @@ router.post("/getCart", tokenServices.authenticateToken, productServices.getCart
   * @id : id of Product to add*/
 router.post("/addToCart", tokenServices.authenticateToken, productServices.addToCart)
 
+/** Adds Product with given id to logged user's cart 
+  * req.body:
+  * @id : id of Product to add*/
+router.post("/setProductInCart", tokenServices.authenticateToken, productServices.setProductInCart)
+
 /** Removes Product with given id from logged user's cart 
   * req.body:
   * @id : id of Product to remove */

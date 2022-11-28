@@ -117,6 +117,43 @@ addToCart = async (req, res) => {
     }
 }
 
+/** @Sets : Product's quantity to given number in User's cart */
+setProductInCart = async (req, res) => {
+    try {
+        if(!req.body.id || !req.body.quantity)  
+            return res.sendStatus(400)
+            
+        if(!await Product.findById(req.body.id))
+            return res.status(404)
+
+        const user = await User.findById(req.user._id)
+
+        //=======| SET OR REMOVE |=======
+        quantity = parseInt(req.body.quantity)
+
+        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        
+        // if there's already a Product with given Id, set quantity (or remove Product)
+        if(prodIndex >= 0) {
+            if(quantity > 0)    user.cart[prodIndex].quantity = quantity   // Set quantity
+            else                user.cart.splice(prodIndex, 1)              // remove product from cart
+        }
+        else // else - add product to User's cart
+            user.cart.push({
+                productId: req.body.id,
+                quantity: quantity,
+            })
+
+        await user.save()
+
+        res.status(202).send(JSON.stringify(user.cart))
+
+    } catch(err) {
+        res.sendStatus(500)
+        console.log(err) 
+    }
+}
+
 /** @Deletes : Product from User's cart */
 removeFromCart = async (req, res) => {
     try {
@@ -154,5 +191,6 @@ module.exports = {
     deleteProduct,
     getCart,
     addToCart,
+    setProductInCart,
     removeFromCart,
 }

@@ -1,4 +1,5 @@
 header = `<div><h1>NAME</h1><h1>PRICE</h1><h1>QUANTITY</h1></div>`
+var sum = 0
 
 populateProducts = async cart => {
     if(!cart.length)
@@ -22,7 +23,7 @@ populateProducts = async cart => {
             }).then(cart => {
                 if(e.target.value <= 0)
                     e.target.parentElement.remove()
-                    
+
                 updateSum(cart)
             })
         })
@@ -34,15 +35,48 @@ populateProducts = async cart => {
     updateSum(cart)
 }
 
-// Display final price based on cart's content, promo codes and delivery
-updateSum = async cart => {
-    sum = 0
+displayDeliveries = deliveries => {
+    for(d of deliveries) 
+        delivery_in.innerHTML += `<input type="radio" name="delivery" value="${d.price}">${d.name} - ${d.price}$<br>`
 
-    for(entry of cart) 
-        sum += entry.quantity * entry.product.price
-
-    sum_display.innerHTML = `Sum: ${sum}$`
+    $('[type="radio"]').on("change", () => updateSum())
 }
+
+displayPromos = promos => {
+    for(p of promos) 
+        promo_in.innerHTML += `<option value="${p.discount}">${p.name}</option>`
+
+    $("#promo_in").on("change", () => updateSum())
+}
+
+// Display final price based on cart's content, promo codes and delivery
+updateSum = cart => {
+    if(cart) {
+        sum = 0
+    
+        for(entry of cart) 
+            sum += entry.quantity * entry.product.price
+    }
+
+    // apply promo
+    promo = promo_in.value
+    v_sum = promo.endsWith("%")? sum*(1 - promo.slice(0, -1)/100) : sum - promo
+    discount_display.innerHTML = promo.endsWith("%")? promo + "" : promo + "$"
+    
+    //apply delivery
+    d_price = $('[type="radio"]:checked').val()
+    if(d_price)
+        v_sum += parseInt(d_price)
+
+    sum_display.innerHTML = `Sum: ${v_sum.toFixed(2)}$`
+}
+
 
 authorizedFetch("getCart")
 .then(populateProducts)
+
+dataFetch("getDeliveries")
+.then(displayDeliveries)
+
+dataFetch("getPromos")
+.then(displayPromos)

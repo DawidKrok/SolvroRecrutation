@@ -48,6 +48,7 @@ Content-Type: application/json
 }
 
 ###
+//==================| LOGGING |=================//
 
 POST {{host}}/register
 Content-Type: application/json
@@ -99,3 +100,14 @@ Content-Type: application/json
 {
     "id": "63811795c8dab7a6daabde0e"
 }
+
+###
+//============| DELIVERIES & PROMOS |===========//
+
+###
+
+POST {{host}}/getDeliveries
+
+###
+
+POST {{host}}/getPromos

@@ -1,6 +1,24 @@
 const mongoose = require("mongoose")
 
 // Schemas for unification of documents inside database
+const deliverySchema = new mongoose.Schema({    
+    name: String,
+    price: Number,
+}, {
+    versionKey: false
+})
+const Delivery = new mongoose.model("Delivery", deliverySchema)
+
+
+const promoSchema = new mongoose.Schema({    
+    name: String,
+    discount: String,
+}, {
+    versionKey: false
+})
+const Promo = new mongoose.model("Promo", promoSchema)
+
+
 const productSchema = new mongoose.Schema({    
     name: String,
     price: Number,
@@ -50,4 +68,6 @@ module.exports = {
     Product,
     User,
     RefreshToken,
+    Delivery,
+    Promo
 } 

@@ -1,12 +1,11 @@
 const router = require('express').Router()
 const productServices = require('../services/productServices')
+const dataServices = require('../services/dataServices')
 const tokenServices = require('../services/tokenServices')
 
-
-//&&&&&&&&&&&&&| POST METHODS |&&&&&&&&&&&&&&
-/** =============
+/** ==============
  *     PRODUCTS
- * ============= */
+ * =============== */
  
  /** Returns all Products documents from database */
 router.post("/getAllProducts", productServices.getAllProducts)
@@ -46,5 +45,17 @@ router.post("/setProductInCart", tokenServices.authenticateToken, productService
   * req.body:
   * @id : id of Product to remove */
 router.post("/removeFromCart", tokenServices.authenticateToken, productServices.removeFromCart)
+
+
+
+/** ==========================
+ *     DELIVERIES & PROMOS
+ * =========================== */
+ 
+ /** Returns all Deliveries documents from database */
+router.post("/getDeliveries", dataServices.getDeliveries)
+
+ /** Returns all Promos documents from database */
+router.post("/getPromos", dataServices.getPromos)
 
 module.exports = router

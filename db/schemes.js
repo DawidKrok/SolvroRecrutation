@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema({
 }, {
     versionKey: false
 })
+const Product = new mongoose.model("Product", productSchema)
+
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -19,13 +21,18 @@ const userSchema = new mongoose.Schema({
         require: true,
     },
     cart: [{
-        productId: mongoose.ObjectId,
+        product: {
+            type: mongoose.ObjectId,
+            ref: "Product",
+        },
         quantity: Number,
         _id: false
     }]
 }, {
     versionKey: false
 })
+const User = new mongoose.model("User", userSchema)
+
 
 const refreshTokenSchema = new mongoose.Schema({
     token: {
@@ -36,10 +43,6 @@ const refreshTokenSchema = new mongoose.Schema({
 }, {
     versionKey: false
 })
-
-// models with declared Schema
-const Product = new mongoose.model("Product", productSchema)
-const User = new mongoose.model("User", userSchema)
 const RefreshToken = new mongoose.model("RefreshToken", refreshTokenSchema)
 
 

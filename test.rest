@@ -63,7 +63,7 @@ POST {{host}}/logout
 
 ###
 //==================| CART |=================//
-@auth_key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk2MjYyODcsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOlt7InByb2R1Y3RJZCI6IjYzODExN2JlYzhkYWI3YTZkYWFiZGUxMiIsInF1YW50aXR5IjoyfSx7InByb2R1Y3RJZCI6IjYzODExN2E5YzhkYWI3YTZkYWFiZGUxMCIsInF1YW50aXR5IjoyfSx7InByb2R1Y3RJZCI6IjYzODExNzk1YzhkYWI3YTZkYWFiZGUwZSIsInF1YW50aXR5IjoxfSx7InByb2R1Y3RJZCI6IjYzODExN2NiYzhkYWI3YTZkYWFiZGUxNCIsInF1YW50aXR5Ijo1fSx7InByb2R1Y3RJZCI6IjYzN2U3NzUwOGJkY2M5ZmUyNzg0ZGY3ZiIsInF1YW50aXR5IjoxfV19LCJpYXQiOjE2Njk2MjU2ODd9.SP-sGGjWrAkKzMhWOFO3Id2w6XvbdTDsaIjW_oMBMDU
+@auth_key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk3Mzg1NTUsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOlt7InByb2R1Y3QiOiI2MzdlNzc1MDhiZGNjOWZlMjc4NGRmN2YiLCJxdWFudGl0eSI6NH0seyJwcm9kdWN0IjoiNjM4MTE3OTVjOGRhYjdhNmRhYWJkZTBlIiwicXVhbnRpdHkiOjF9LHsicHJvZHVjdCI6IjYzODExNzk1YzhkYWI3YTZkYWFiZGUwZSIsInF1YW50aXR5IjoxfV19LCJpYXQiOjE2Njk3Mzc5NTV9.60N0TU4REVZwkMGj2pVBAndnZwklWthBNR7RcyeXPQs
 ###
 
 POST {{host}}/getCart
@@ -76,7 +76,7 @@ Authorization: {{auth_key}}
 Content-Type: application/json
 
 {
-    "id": "637e77508bdcc9fe2784df7f"
+    "id": "63811795c8dab7a6daabde0e"
 }
 
 ###
@@ -86,8 +86,8 @@ Authorization: {{auth_key}}
 Content-Type: application/json
 
 {
-    "id": "637e77508bdcc9fe2784df7f",
-    "quantity": 4
+    "id": "63811795c8dab7a6daabde0e",
+    "quantity": 2
 }
 
 ###
@@ -97,5 +97,5 @@ Authorization: {{auth_key}}
 Content-Type: application/json
 
 {
-    "id": "637e77508bdcc9fe2784df7f"
+    "id": "63811795c8dab7a6daabde0e"
 }

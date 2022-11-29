@@ -6,9 +6,9 @@ populateProducts = async cart => {
 
     products_container.innerHTML = header
 
-    for(var entry of cart) {
+    for(const entry of cart) {
         // get product based on productId
-        p = await dataFetch("getProduct", {id: entry.productId})
+        p = entry.product
 
         node = $("<div class='product_card'></div>")
         node.append(`<h2>${p.name}</h2>`)
@@ -17,7 +17,7 @@ populateProducts = async cart => {
         let q_input = $(`<input type="number" value=${entry.quantity}>`)
         q_input.on("change", e => {
             authorizedFetch("setProductInCart", {
-                id: entry.productId,
+                id: entry.product._id,
                 quantity: e.target.value
             }).then(cart => {
                 updateSum(cart)
@@ -35,13 +35,8 @@ populateProducts = async cart => {
 updateSum = async cart => {
     sum = 0
 
-    // not optimal but that is a problem for frontend not backend
-    for(var entry of cart) {
-        // get product based on productId
-        p = await dataFetch("getProduct", {id: entry.productId})
-
-        sum += entry.quantity*p.price
-    }
+    for(entry of cart) 
+        sum += entry.quantity * entry.product.price
 
     sum_display.innerHTML = `Sum: ${sum}$`
 }

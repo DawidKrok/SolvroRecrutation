@@ -76,6 +76,7 @@ getCart = async (req, res) => {
     try {     
         // req.user contains only user info encoded into token, so it's good only for retrieving credentials
         const user = await User.findById(req.user._id)
+            .populate({path: "cart.product"})
         res.status(202).send(JSON.stringify(user.cart))
 
     } catch(err) {
@@ -96,19 +97,20 @@ addToCart = async (req, res) => {
         const user = await User.findById(req.user._id)
 
         //=======| ADD OR INCREMENT |=======
-        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        prodId = user.cart.findIndex(elem => elem.product == req.body.id)
         
         // if there's already a Product with given Id, increment its quantity
-        if(prodIndex >= 0)
-            user.cart[prodIndex].quantity++
+        if(prodId >= 0)
+            user.cart[prodId].quantity++
         else // else - add product to User's cart
             user.cart.push({
-                productId: req.body.id,
+                product: req.body.id,
                 quantity: 1,
             })
 
         await user.save()
 
+        await user.populate({path: "cart.product"})
         res.status(202).send(JSON.stringify(user.cart))
 
     } catch(err) {
@@ -131,21 +133,22 @@ setProductInCart = async (req, res) => {
         //=======| SET OR REMOVE |=======
         quantity = parseInt(req.body.quantity)
 
-        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        prodId = user.cart.findIndex(elem => elem.product == req.body.id)
         
         // if there's already a Product with given Id, set quantity (or remove Product)
-        if(prodIndex >= 0) {
-            if(quantity > 0)    user.cart[prodIndex].quantity = quantity   // Set quantity
-            else                user.cart.splice(prodIndex, 1)              // remove product from cart
+        if(prodId >= 0) {
+            if(quantity > 0)    user.cart[prodId].quantity = quantity   // Set quantity
+            else                user.cart.splice(prodId, 1)              // remove product from cart
         }
         else // else - add product to User's cart
             user.cart.push({
-                productId: req.body.id,
+                product: req.body.id,
                 quantity: quantity,
             })
 
         await user.save()
 
+        await user.populate({path: "cart.product"})
         res.status(202).send(JSON.stringify(user.cart))
 
     } catch(err) {
@@ -163,20 +166,21 @@ removeFromCart = async (req, res) => {
         const user = await User.findById(req.user._id)
         //=======| REMOVE OR DECREMENT |=======
         
-        prodIndex = user.cart.findIndex(elem => elem.productId == req.body.id)
+        prodId = user.cart.findIndex(elem => elem.product == req.body.id)
         
         // if there's no Product with given Id, return 404
-        if(prodIndex == -1) return res.sendStatus(404)
+        if(prodId == -1) return res.sendStatus(404)
         
         
-        user.cart[prodIndex].quantity--
+        user.cart[prodId].quantity--
         
         // if quantinty reached 0, remove Product from cart
-        if(user.cart[prodIndex].quantity <= 0) 
-            user.cart.splice(prodIndex, 1)
+        if(user.cart[prodId].quantity <= 0) 
+            user.cart.splice(prodId, 1)
 
         await user.save()
 
+        await user.populate({path: "cart.product"})
         res.status(202).send(JSON.stringify(user.cart))
     } catch(err) {
         res.sendStatus(500)

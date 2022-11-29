@@ -20,6 +20,9 @@ populateProducts = async cart => {
                 id: entry.product._id,
                 quantity: e.target.value
             }).then(cart => {
+                if(e.target.value <= 0)
+                    e.target.parentElement.remove()
+                    
                 updateSum(cart)
             })
         })

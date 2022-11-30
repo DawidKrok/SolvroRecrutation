@@ -7,6 +7,18 @@ It's also secured against:
 - XSS Attacks
 - NoSQL Injections
 
+# Usage
+Without being logged only `localhost:5000/` index page is available where all products are displayed.  
+    
+    
+After logging into user account the `/cart` and `/share` pages are available. Index page also changes.
+
+On index page user can now add products to cart by clicking on them. User can also go to `/cart` page by clicking on the cart icon.
+
+On `/cart` page user can see all products added to their cart, change their quantity or choose delivery type and promo code. The final price is displayed at the bottom. User can also obtain `Share Link` that can be given to other user.
+
+`/share` page should be accessed by pasting other users' `Share Link`. It adds contents of shared cart to the cart of user that is using this link.
+
 
 # Folder structure
 ### db

@@ -1,4 +1,4 @@
-const ADMIN_ALREADY_EXISTS = "User with given email already exists",
+const USER_ALREADY_EXISTS = "User with given email already exists",
 INVALID_EMAIL = "Email not valid",
 SHORT_PASS = "Password must be at least 7 characters long"
 
@@ -30,14 +30,14 @@ $("form").on("submit", e => {
     /**  @data : object resolved from Promise above. Contains Access and Refresh Tokens */
     .then(data => {
         localStorage.setItem("accessToken", data)
-        window.location.replace("/admin")
+        window.location.replace("/")
     })
     .catch(err => {
         switch(err) {
-            // status 404 means that there's already admin with given email
+            // status 404 means that there's already user with given email
             case 404:
                 $(".email-err").css("visibility", "visible")
-                $(".email-err").html(ADMIN_ALREADY_EXISTS)
+                $(".email-err").html(USER_ALREADY_EXISTS)
                 break 
         }
 

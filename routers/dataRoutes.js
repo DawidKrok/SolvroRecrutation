@@ -46,7 +46,11 @@ router.post("/setProductInCart", tokenServices.authenticateToken, productService
   * @id : id of Product to remove */
 router.post("/removeFromCart", tokenServices.authenticateToken, productServices.removeFromCart)
 
+/** Returns User's cart share link*/
+router.post("/getShareLink", tokenServices.authenticateToken, productServices.getShareLink)
 
+/** Copies shared User's cart */
+router.post("/applyShareLink", tokenServices.authenticateToken, productServices.applyShareLink)
 
 /** ==========================
  *     DELIVERIES & PROMOS

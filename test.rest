@@ -37,6 +37,7 @@ Content-Type: application/json
     "id": "637e78348bdcc9fe2784df8a"
 }
 
+//==================| LOGGING |=================//
 ###
 
 POST {{host}}/login
@@ -48,7 +49,6 @@ Content-Type: application/json
 }
 
 ###
-//==================| LOGGING |=================//
 
 POST {{host}}/register
 Content-Type: application/json
@@ -64,7 +64,7 @@ POST {{host}}/logout
 
 ###
 //==================| CART |=================//
-@auth_key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk3Mzg1NTUsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOlt7InByb2R1Y3QiOiI2MzdlNzc1MDhiZGNjOWZlMjc4NGRmN2YiLCJxdWFudGl0eSI6NH0seyJwcm9kdWN0IjoiNjM4MTE3OTVjOGRhYjdhNmRhYWJkZTBlIiwicXVhbnRpdHkiOjF9LHsicHJvZHVjdCI6IjYzODExNzk1YzhkYWI3YTZkYWFiZGUwZSIsInF1YW50aXR5IjoxfV19LCJpYXQiOjE2Njk3Mzc5NTV9.60N0TU4REVZwkMGj2pVBAndnZwklWthBNR7RcyeXPQs
+@auth_key = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2Njk4MzAzMTIsImRhdGEiOnsiX2lkIjoiNjM3ZTc4MTc4YmRjYzlmZTI3ODRkZjg1IiwiZW1haWwiOiJkYXdpZEBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRhaGtoc0xNRkZiT3RRR0VaNjIycUUuTVZuVHVtR1Y4YlA5UlBFeDlvTC96T1RiQTZyTFkwaSIsImNhcnQiOlt7InByb2R1Y3QiOiI2MzdlNzc1MDhiZGNjOWZlMjc4NGRmN2YiLCJxdWFudGl0eSI6NH0seyJwcm9kdWN0IjoiNjM4MTE3ZDljOGRhYjdhNmRhYWJkZTE2IiwicXVhbnRpdHkiOjN9LHsicHJvZHVjdCI6IjYzODExN2E5YzhkYWI3YTZkYWFiZGUxMCIsInF1YW50aXR5IjoyfV19LCJpYXQiOjE2Njk4Mjk3MTJ9.1X5kMpVPdpIAj2H1LaKoISpTUOrRacXRC3mseB-7ZO4
 ###
 
 POST {{host}}/getCart
@@ -102,8 +102,21 @@ Content-Type: application/json
 }
 
 ###
-//============| DELIVERIES & PROMOS |===========//
 
+POST {{host}}/getShareLink
+Authorization: {{auth_key}}
+
+###
+
+POST {{host}}/applyShareLink
+Authorization: {{auth_key}}
+Content-Type: application/json
+
+{
+    "id": "63873cb50fecdb248409af1a"
+}
+
+//============| DELIVERIES & PROMOS |===========//
 ###
 
 POST {{host}}/getDeliveries

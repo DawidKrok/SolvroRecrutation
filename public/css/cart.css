@@ -22,14 +22,30 @@ a, a:visited {
     text-decoration: none;
 }
 
-#logout {
+#logout,
+#share {
     position: fixed;
     top: 1.5vw;
     right: 2vw;
     width: 4vw;
     height: 2vw;
+
+    cursor: pointer
 }
 
+#share {
+    right: 8vw;
+
+    background: var(--clr-primary);
+    color: #fff;
+    border: var(--clr-primary-darker);
+    font-size: 1vw;
+    font-weight: bolder;
+}
+
+#share:hover {
+    background: var(--clr-primary-dark);
+}
 
 /* ===========| PRODUCTS CONTAINER |============ */
 

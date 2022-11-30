@@ -1,6 +1,6 @@
+const bcryptjs = require('bcryptjs')
 const User = require('../db/schemes').User
 const Product = require('../db/schemes').Product
-
 
 // &&&&&&&&&&&&&&&& | PRODUCT | &&&&&&&&&&&&&&&
 
@@ -171,7 +171,6 @@ removeFromCart = async (req, res) => {
         // if there's no Product with given Id, return 404
         if(prodId == -1) return res.sendStatus(404)
         
-        
         user.cart[prodId].quantity--
         
         // if quantinty reached 0, remove Product from cart
@@ -188,6 +187,51 @@ removeFromCart = async (req, res) => {
     }
 }
 
+// returns link with hashed id 
+getShareLink = async (req, res) => {
+    try {
+        // hashed_id = await bcryptjs.hash(req.user._id, 3)
+
+        res.status(202).send({link: `${req.get('host')}/share?id=${req.user._id}`})
+    } catch(err) {
+        res.sendStatus(500)
+        console.log(err) 
+    }
+}
+
+applyShareLink = async (req, res) => {
+    try {
+        if(!req.body.id)    
+            return res.sendStatus(400)
+        
+        // if share link belongs to User that generated it
+        if(req.body.id == req.user._id)
+            return res.sendStatus(405)
+
+        const shareUser = await User.findById(req.body.id)
+        const user = await User.findById(req.user._id)
+
+        for(e of shareUser.cart) {
+            prodId = user.cart.findIndex(elem => elem.product.equals(e.product))
+
+            // new product in cart
+            if(prodId < 0)
+                user.cart.push({
+                    product: e.product,
+                    quantity: e.quantity,
+                })
+            else
+                user.cart[prodId].quantity += e.quantity
+        }
+
+        await user.save()
+        res.status(202).send({mess: "OK"})
+    } catch(err) {
+        res.sendStatus(500)
+        console.log(err) 
+    }
+}
+
 module.exports = {
     addProduct,
     getAllProducts,
@@ -197,4 +241,6 @@ module.exports = {
     addToCart,
     setProductInCart,
     removeFromCart,
+    getShareLink,
+    applyShareLink
 }

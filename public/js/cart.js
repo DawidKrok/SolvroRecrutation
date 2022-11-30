@@ -66,13 +66,13 @@ updateSum = cart => {
     //apply delivery
     d_price = $('[type="radio"]:checked').val()
     if(d_price)
-        v_sum += parseInt(d_price)
+        v_sum += parseFloat(d_price)
 
     // display price info
     sum_display.innerHTML = `Sum: ${v_sum.toFixed(2)}$`
     discount_display.innerHTML = promo.endsWith("%")? promo + "" : promo + "$"
     prev_price_display.innerHTML = sum
-    deli_price_display.innerHTML = d_price | 0
+    deli_price_display.innerHTML = d_price || 0
 }
 
 
@@ -84,3 +84,15 @@ dataFetch("getDeliveries")
 
 dataFetch("getPromos")
 .then(displayPromos)
+
+
+// =====| SHARE |===== //
+// Copies share link inside of button
+$("#share").on("click", () => {
+    authorizedFetch("/getShareLink")
+    .then(data => {
+        console.log(data.link)
+        navigator.clipboard.writeText(data.link)
+        alert("Link copied!")
+    })
+})

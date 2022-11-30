@@ -37,7 +37,7 @@ populateProducts = async cart => {
 
 displayDeliveries = deliveries => {
     for(d of deliveries) 
-        delivery_in.innerHTML += `<input type="radio" name="delivery" value="${d.price}">${d.name} - ${d.price}$<br>`
+        delivery_in.innerHTML += `<div><input type="radio" name="delivery" value="${d.price}">${d.name} - ${d.price}$<div>`
 
     $('[type="radio"]').on("change", () => updateSum())
 }
@@ -61,14 +61,18 @@ updateSum = cart => {
     // apply promo
     promo = promo_in.value
     v_sum = promo.endsWith("%")? sum*(1 - promo.slice(0, -1)/100) : sum - promo
-    discount_display.innerHTML = promo.endsWith("%")? promo + "" : promo + "$"
+    
     
     //apply delivery
     d_price = $('[type="radio"]:checked').val()
     if(d_price)
         v_sum += parseInt(d_price)
 
+    // display price info
     sum_display.innerHTML = `Sum: ${v_sum.toFixed(2)}$`
+    discount_display.innerHTML = promo.endsWith("%")? promo + "" : promo + "$"
+    prev_price_display.innerHTML = sum
+    deli_price_display.innerHTML = d_price | 0
 }
 
 

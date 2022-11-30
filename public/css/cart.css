@@ -73,3 +73,23 @@ a, a:visited {
 
     left: 5vw;
 }
+
+#discount_p, 
+#prev_price_p,
+#delivery_in,
+#promo_in {
+    position: relative;
+    font-size: 1vw;
+
+    left: 7vw;
+}
+
+#delivery_in {
+    display: flex;
+    width: 45vw;
+    justify-content: space-between;
+}
+
+#promo_in {
+    margin: 3vh 0;
+}

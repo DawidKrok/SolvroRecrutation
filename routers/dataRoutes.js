@@ -19,12 +19,12 @@ router.post("/getProduct", productServices.getProduct)
  * req.body:
  * @name : name of the new Product 
  * @price : price of the new Product */
-router.post("/addProduct", productServices.addProduct)
+// router.post("/addProduct", productServices.addProduct)
 
  /** Deletes Product with given id 
   * req.body:
   * @id : id of Product to delete */
-router.post("/deleteProduct", tokenServices.authenticateToken, productServices.deleteProduct)
+// router.post("/deleteProduct", tokenServices.authenticateToken, productServices.deleteProduct)
 
 
 // =============| CART |============== //
